@@ -1,10 +1,10 @@
 const User = ({user}) => {
   return (
-    <div>
+    <div className="text-lg font-normal">
       <p>{user.name}</p>
       <p>{user.email}</p>
       <hr />
     </div>
   );
 }
-export default User
+export default User;

@@ -3,7 +3,7 @@ import User from "@/components/user";
 const UserList = ({users}) => {
   return (
     <>
-      <h1>List of users</h1>
+      <h1 className="text-4xl font-medium">List of users</h1>
       {users.map((user) => (
         <div key={user.id}>
           <User user={user} />
