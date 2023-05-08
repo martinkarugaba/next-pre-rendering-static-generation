@@ -8,34 +8,34 @@ const PostDetails = ({ post }) => {
     </>
   );
 };
+
 export default PostDetails;
 
 export const getStaticPaths = async () => {
-  const url = "https://jsonplaceholder.typicode.com/posts";
-  const response = await fetch(url);
-  const data = await response.json();
-
-  const paths = data.map(post => {
-    return {
-      params: {
-        postId:`${post.id}`
-      }
-    }
-  })
+  //const url = "https://jsonplaceholder.typicode.com/posts";
+  //const response = await fetch(url);
+  //const data = await response.json();
+  //const paths = data.map(post => {
+  //  return {
+  //    params: {
+  //      postId:`${post.id}`
+  //    }
+  //  }
+  //})
   return {
-    //paths: [
-    //  {
-    //    params: { postId: "1" },
-    //  },
-    //  {
-    //    params: { postId: "2" },
-    //  },
-    //  {
-    //    params: { postId: "3" },
-    //  },
-    //],
-    paths,
-    fallback: false,
+    paths: [
+      {
+        params: { postId: "1" },
+      },
+      {
+        params: { postId: "2" },
+      },
+      {
+        params: { postId: "3" },
+      },
+    ],
+    //paths,
+    fallback: "blocking",
   };
 };
 
@@ -44,6 +44,13 @@ export const getStaticProps = async (context) => {
   const url = `https://jsonplaceholder.typicode.com/posts/${params.postId}`;
   const response = await fetch(url);
   const data = await response.json();
+
+  //console.log(`Generating page for /page/${params.postId}`);
+  if (!data.id) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

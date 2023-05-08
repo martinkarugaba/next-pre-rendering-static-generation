@@ -21,7 +21,6 @@ const PostList = ({ posts }) => {
 };
 export default PostList;
 
-
 export const getStaticProps = async () => {
   const url = "https://jsonplaceholder.typicode.com/posts";
   const response = await fetch(url);
